@@ -15,7 +15,7 @@ An analysis of a real bank using **PostgreSQL only**: from eight raw files to th
 
 ## The data
 
-The [Berka dataset](https://sorry.vse.cz/~berka/challenge/pkdd1999/berka.htm) (PKDD'99 Discovery Challenge, prepared by Petr Berka and Marta Sochorova) holds real, anonymized data from a Czech bank between 1993 and 1998.
+The [Berka dataset](https://www.kaggle.com/datasets/marceloventura/the-berka-dataset) (PKDD'99 Discovery Challenge, prepared by Petr Berka and Marta Sochorova) holds real, anonymized data from a Czech bank between 1993 and 1998.
 
 | Table | Rows | Content |
 | --- | --- | --- |
