@@ -80,7 +80,6 @@ CREATE TABLE raw.district (
 );
 
 -- Carga. Los archivos originales usan ';' como separador y traen encabezado.
--- Si tu descarga viene en .csv, cambia la extensión en las rutas.
 COPY raw.account  FROM '/data/account.csv'  WITH (FORMAT csv, DELIMITER ';', HEADER true);
 COPY raw.client   FROM '/data/client.csv'   WITH (FORMAT csv, DELIMITER ';', HEADER true);
 COPY raw.disp     FROM '/data/disp.csv'     WITH (FORMAT csv, DELIMITER ';', HEADER true);
