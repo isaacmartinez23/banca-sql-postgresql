@@ -15,7 +15,7 @@ An analysis of a real bank using **PostgreSQL only**: from eight raw files to th
 
 ## The data
 
-The [Berka dataset](https://www.kaggle.com/datasets/marceloventura/the-berka-dataset) (PKDD'99 Discovery Challenge, prepared by Petr Berka and Marta Sochorova) holds real, anonymized data from a Czech bank between 1993 and 1998.
+The [Berka dataset](https://sorry.vse.cz/~berka/challenge/pkdd1999/berka.htm) (PKDD'99 Discovery Challenge, prepared by Petr Berka and Marta Sochorova) holds real, anonymized data from a Czech bank between 1993 and 1998.
 
 | Table | Rows | Content |
 | --- | --- | --- |
@@ -120,25 +120,27 @@ Requirements: Docker Desktop.
    POSTGRES_PASSWORD=choose_a_password
    ```
 
-2. Download the Berka dataset (it is on Kaggle as "Berka dataset") and copy the 8 files into the `data/` folder: `account.csv`, `card.csv`, `client.csv`, `disp.csv`, `district.csv`, `loan.csv`, `order.csv` and `trans.csv`. If your download uses another extension, adjust the paths at the end of `01_raw_load.sql`.
+2. Download the Berka dataset from [Kaggle](https://www.kaggle.com/datasets/marceloventura/the-berka-dataset) and copy the 8 files into the `data/` folder: `account.csv`, `card.csv`, `client.csv`, `disp.csv`, `district.csv`, `loan.csv`, `order.csv` and `trans.csv`. If your download uses another extension, adjust the paths at the end of `01_raw_load.sql`.
 
-3. Start the database and open the console:
+3. Start the database. The first time, it loads the data and runs the seven scripts on its own, in order:
 
    ```
    docker compose up -d
+   docker compose logs -f db
+   ```
+
+   Wait for the message `PostgreSQL init process complete; ready for start up` and exit with Ctrl+C. If the files are not in `data/`, the load fails and the container stops: copy them and start over with `docker compose down -v`.
+
+4. Open the console to explore the results, with the user from your `.env`:
+
+   ```
    docker compose exec db psql -U berka -d berka
    ```
 
-4. Run the scripts in order:
+   The result tables of each script stay in the log from step 3. To print them again, re-run the script you are interested in from inside the console, where the prompt reads `berka=#`:
 
    ```
-   \i /docker-entrypoint-initdb.d/01_raw_load.sql
-   \i /docker-entrypoint-initdb.d/02_clean.sql
-   \i /docker-entrypoint-initdb.d/03_quality.sql
    \i /docker-entrypoint-initdb.d/04_loan_risk.sql
-   \i /docker-entrypoint-initdb.d/05_card_crosssell.sql
-   \i /docker-entrypoint-initdb.d/06_cohort_adoption.sql
-   \i /docker-entrypoint-initdb.d/07_performance.sql
    ```
 
 It uses PostgreSQL 18. Everything runs in a few minutes.
@@ -347,4 +349,4 @@ Timings come from a single machine and vary between runs.
 
 Data: PKDD'99 Discovery Challenge, prepared by Petr Berka and Marta Sochorova. The data belongs to its owners and is not redistributed here.
 
-Author: Isaac Martínez · [github.com/isaacmartinez23](https://github.com/isaacmartinez23)
+Author: Isaac Martínez · [isaacmartinez.space](https://isaacmartinez.space) · [github.com/isaacmartinez23](https://github.com/isaacmartinez23)
