@@ -15,7 +15,7 @@ Análisis de un banco real con **solo PostgreSQL**: de ocho archivos crudos a tr
 
 ## Los datos
 
-El [dataset Berka](https://sorry.vse.cz/~berka/challenge/pkdd1999/berka.htm) (PKDD'99 Discovery Challenge, preparado por Petr Berka y Marta Sochorova) contiene datos reales y anonimizados de un banco checo entre 1993 y 1998.
+El [dataset Berka](https://www.kaggle.com/datasets/marceloventura/the-berka-dataset) (PKDD'99 Discovery Challenge, preparado por Petr Berka y Marta Sochorova) contiene datos reales y anonimizados de un banco checo entre 1993 y 1998.
 
 | Tabla | Filas | Contenido |
 | --- | --- | --- |
